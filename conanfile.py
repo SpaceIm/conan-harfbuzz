@@ -11,7 +11,6 @@ class HarfbuzzConan(ConanFile):
     license = "MIT"
     exports_sources = ["CMakeLists.txt", "patches/*.patch"]
     generators = "cmake"
-    short_paths = True
 
     settings = "os", "arch", "compiler", "build_type"
 
