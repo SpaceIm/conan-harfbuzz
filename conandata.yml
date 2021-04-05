@@ -5,4 +5,4 @@ sources:
 patches:
   "2.8.0":
     - patch_file: "patches/source_subfolder_2.8.X.patch"
-      base_path: "."
+      base_path: "source_subfolder"
