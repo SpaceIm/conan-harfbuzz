@@ -4,5 +4,5 @@ sources:
     sha256: "9444358d1d8c1884c3a25b02fe702bd244172c4fdd2e98f5a165bc0987ef34f6"
 patches:
   "2.8.0":
-    - patch_file: "patches/source_subfolder_2.8.X.patch"
+    - patch_file: "patches/icu-2.8.x.patch"
       base_path: "source_subfolder"
