@@ -7,6 +7,8 @@ conan_basic_setup()
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/example.ttf
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-add_executable(${CMAKE_PROJECT_NAME} example.c)
-target_link_libraries(${CMAKE_PROJECT_NAME} ${CONAN_LIBS})
-set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY C_STANDARD 99)
+find_package(harfbuzz REQUIRED CONFIG)
+
+add_executable(${PROJECT_NAME} example.c)
+target_link_libraries(${PROJECT_NAME} harfbuzz::harfbuzz)
+set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 99)
