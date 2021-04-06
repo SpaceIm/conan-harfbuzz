@@ -32,7 +32,7 @@ class HarfbuzzConan(ConanFile):
         "with_directwrite": True,
     }
 
-    exports_sources = ["CMakeLists.txt", "patches/*.patch"]
+    exports_sources = ["CMakeLists.txt", "patches/**"]
     generators = "cmake"
     _cmake = None
 
@@ -55,6 +55,7 @@ class HarfbuzzConan(ConanFile):
     def configure(self):
         if self.options.shared:
             del self.options.fPIC
+        del self.settings.compiler.libcxx
 
     def requirements(self):
         if self.options.with_freetype:
@@ -88,8 +89,8 @@ class HarfbuzzConan(ConanFile):
         self._cmake.definitions["HB_HAVE_INTROSPECTION"] = False
         # fix for MinGW debug build
         if self.settings.compiler == "gcc" and self.settings.os == "Windows":
-            cmake.definitions["CMAKE_C_FLAGS"] = "-Wa,-mbig-obj"
-            cmake.definitions["CMAKE_CXX_FLAGS"] = "-Wa,-mbig-obj"
+            self._cmake.definitions["CMAKE_C_FLAGS"] = "-Wa,-mbig-obj"
+            self._cmake.definitions["CMAKE_CXX_FLAGS"] = "-Wa,-mbig-obj"
 
         self._cmake.configure(build_folder=self._build_subfolder)
         return self._cmake
